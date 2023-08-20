@@ -11,6 +11,14 @@ class Store {
     write(newNote) {
         return writeFileAsync('db/db.json', JSON.stringify(newNote));
     }
-}
+
+    getNotes() {
+        return this.read().then((notes)=>{
+            return JSON.parse(notes);
+        }).catch((err)=>{
+            console.log(err)
+        });
+    }
+};
 
 module.exports = new Store();
