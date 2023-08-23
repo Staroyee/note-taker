@@ -31,6 +31,20 @@ class Store {
             return newNote;
         });
     }
+
+    deleteNote(id) {
+        return this.getNotes().then((notes) => {
+            const filteredNotes = []
+            for (let i =0;i<notes.length;i++){
+                if(id !== notes[i].id) {
+                    filteredNotes.push(notes[i])
+                }
+            }
+            return filteredNotes
+        }).then((notesArray) => {
+            return this.write(notesArray);
+        });
+    }
 };
 
 module.exports = new Store();
